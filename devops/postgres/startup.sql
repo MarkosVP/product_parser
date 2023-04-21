@@ -1,0 +1,1 @@
+CREATE DATABASE product_parser WITH ENCODING 'UTF8'

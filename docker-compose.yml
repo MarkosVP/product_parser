@@ -1,0 +1,42 @@
+version: '1.0'
+services:
+  # Modelo a imagem da aplicação
+  app:
+    container_name: productparser_app
+    build:
+      context: ./
+      dockerfile: ./devops/docker/DockerFile
+    hostname: productparser_app
+    ports: 
+    - 8080:80
+    volumes:
+      - .:/var/www/html
+      - ./devops/apache/default.conf:/etc/apache2/sites-enabled/000-default.conf
+    networks:
+      - productparser_network
+    depends_on:
+      - app_database
+
+  # Modelo a imagem do banco de dados com volume dedicado
+  app_database:
+    container_name: productparser_pgsql
+    image: postgres
+    hostname: productparser_pgsql
+    environment:
+      - POSTGRES_PASSWORD=pgsql1234
+    volumes:
+      - dbpgsql:/var/lib/postgresql/data # Insiro os dados do DB no volume dedicado
+      - ./devops/postgres/startup.sql:/docker-entrypoint-initdb.d/startup.sql # Carrego o arquivo de inicialização do banco na imagem
+    ports:
+      - 5432:5432
+    networks:
+      - productparser_network
+
+# Declaro o volume do banco de dados
+volumes:
+  dbpgsql:
+
+# Declaro uma rede interna para o projeto
+networks:
+  productparser_network:
+    name: productparser_network
