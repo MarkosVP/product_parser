@@ -3,8 +3,6 @@
 # Descrição
 O projeto em questão representa um site de consulta, inclusão e checagem de nomes de produtos com base no [Open Food Facts](https://br.openfoodfacts.org/data).
 
-O projeto foi feito de forma simplória e contém somente uma tela, buscando simplificar o objetivo final.
-
 # Ferramentas Utilizadas
 
 Para este projeto, as seguintes ferramentas foram utilizadas:
