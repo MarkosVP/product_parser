@@ -1,8 +1,11 @@
+# Defino o nome da imagem utilizada no projeto
+APP_IMAGE := app
+
 # Defino o nome do container utilizado no projeto
-APP_CONTAINER := app
+APP_CONTAINER := productparser_app
 
 # Defino o nome de container do banco de dados
-DB_CONTAINER := app_database
+DB_CONTAINER := productparser_pgsql
 
 # Defino a regra padrão executada pelo comando 'make'
 .DEFAULT_GOAL := help
@@ -26,7 +29,7 @@ build: ## Recrio as imagens do projeto
 	docker compose up --build
 
 install: ## Instalo as dependências do projeto
-	docker compose run --rm -it $(APP_CONTAINER) composer install
+	docker compose run --rm -it $(APP_IMAGE) composer install
 
 delete-packages: ## Deleto as dependências do projeto
 	sudo rm -rf ./src/vendor
@@ -42,7 +45,7 @@ access-db: ## Acesso o terminal do container do DB
 prepare-environment: install up-in-background migrate-db ## Preparo e executo o projeto
 
 migrate-db: ## Migra as tabelas necessárias para o banco de dados
-	docker compose run --rm -it $(APP_CONTAINER) php artisan migrate
+	docker compose run --rm -it $(APP_IMAGE) php artisan migrate
 
 migrate-reverse-db: ## Deleta as tabelas migradas pelo app no Banco
-	docker compose run --rm -it $(APP_CONTAINER) php artisan migrate:reset
+	docker compose run --rm -it $(APP_IMAGE) php artisan migrate:reset
