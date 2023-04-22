@@ -1,5 +1,7 @@
+# Baixo a imagem padrão do PHP 8 com apache
 FROM php:8.0-apache
 
+# Instalo alguns módulos necessários na imagem
 RUN apt update \
         && apt install -y \
             g++ \
@@ -15,6 +17,11 @@ RUN apt update \
             pdo_pgsql \
             pgsql
 
+# Defino o workdir como o do projeto
 WORKDIR /var/www/html/src
 
+# Baixo o composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+# Habilito o mod Rewrite do Apache para permitir que novas rotas sejam acessadas no projeto
+RUN a2enmod rewrite

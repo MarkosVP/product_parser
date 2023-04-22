@@ -1,8 +1,8 @@
 # Defino o nome do container utilizado no projeto
-APP_CONTAINER := productparser_app
+APP_CONTAINER := app
 
 # Defino o nome de container do banco de dados
-DB_CONTAINER := productparser_pgsql
+DB_CONTAINER := app_database
 
 # Defino a regra padrão executada pelo comando 'make'
 .DEFAULT_GOAL := help
@@ -31,10 +31,18 @@ install: ## Instalo as dependências do projeto
 delete-packages: ## Deleto as dependências do projeto
 	sudo rm -rf ./src/vendor
 
-reset-environment: delete-packages install ## Restauro o projeto
+reset-environment: delete-packages prepare-environment ## Restauro o projeto
 
 access-app: ## Acesso o terminal do container do App
 	docker exec -it $(APP_CONTAINER) bash
 
 access-db: ## Acesso o terminal do container do DB
 	docker exec -it $(DB_CONTAINER) bash
+
+prepare-environment: install up-in-background migrate-db ## Preparo e executo o projeto
+
+migrate-db: ## Migra as tabelas necessárias para o banco de dados
+	docker compose run --rm -it $(APP_CONTAINER) php artisan migrate
+
+migrate-reverse-db: ## Deleta as tabelas migradas pelo app no Banco
+	docker compose run --rm -it $(APP_CONTAINER) php artisan migrate:reset
