@@ -35,6 +35,6 @@ O projeto utiliza a estrutura de CRON do Linux para efetuar as chamadas automát
 ```
 make init-cron
 ```
-A CRON esta configurada para executar todo dia as 00:00:00, mas caso necessário, altere o arquivo `Makefile` do projeto (Função `config-cron`) e execute novamente o comando acima (Caso já tenha executado o init da cron, derrube o container e suba novamente, pois o comando só anexa a cron no arquivo, não substitui)
+A CRON esta configurada para executar a cada 1 minuto, mas caso necessário, altere o arquivo `Makefile` do projeto (Função `config-cron`) e execute novamente o comando acima (Caso já tenha executado o init da cron, derrube o container e suba novamente, pois o comando só anexa a cron no arquivo, não substitui)
 
 >  This is a challenge by [Coodesh](https://coodesh.com/)
