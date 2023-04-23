@@ -24,29 +24,29 @@ return new class extends Migration
         Schema::create(
             $this->_tableName,
             function (Blueprint $table) {
-                $table->integer('code')->primary();
+                $table->bigInteger('code')->primary();
                 $table->string('status');
                 $table->dateTime('imported_t')->default(date('Y-m-d H:i:s'));
-                $table->string('url')->nullable();
-                $table->string('creator');
+                $table->text('url')->nullable();
+                $table->text('creator');
                 $table->integer('created_t')->default(strtotime(date('Y-m-d H:i:s')));
                 $table->integer('last_modified_t')->default(strtotime(date('Y-m-d H:i:s')));
-                $table->string('product_name');
-                $table->string('quantity');
-                $table->string('brands');
-                $table->string('categories')->nullable();
-                $table->string('labels')->nullable();
-                $table->string('cities')->nullable();
-                $table->string('purchase_places')->nullable();
-                $table->string('stores')->nullable();
-                $table->string('ingredients_text')->nullable();
-                $table->string('traces')->nullable();
-                $table->string('serving_size')->nullable();
+                $table->text('product_name');
+                $table->integer('quantity')->default(1);
+                $table->text('brands')->nullable();
+                $table->text('categories')->nullable();
+                $table->text('labels')->nullable();
+                $table->text('cities')->nullable();
+                $table->text('purchase_places')->nullable();
+                $table->text('stores')->nullable();
+                $table->text('ingredients_text')->nullable();
+                $table->text('traces')->nullable();
+                $table->text('serving_size')->nullable();
                 $table->float('serving_quantity')->nullable();
                 $table->integer('nutriscore_score')->nullable();
-                $table->string('nutriscore_grade')->nullable();
-                $table->string('main_category')->nullable();
-                $table->string('image_url')->nullable();
+                $table->text('nutriscore_grade')->nullable();
+                $table->text('main_category')->nullable();
+                $table->text('image_url')->nullable();
 
                 // Comento na tabela
                 $table->comment('Tabela contendo os produtos do projeto');
