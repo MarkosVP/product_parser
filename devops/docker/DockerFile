@@ -17,6 +17,12 @@ RUN apt update \
             pdo_pgsql \
             pgsql
 
+# Instalo o Xdebug para o PHP
+RUN pecl install xdebug
+
+# Adiciono suporte para a ferramenta de CRON
+RUN apt-get -y install -qq --force-yes cron
+
 # Defino o workdir como o do projeto
 WORKDIR /var/www/html/src
 

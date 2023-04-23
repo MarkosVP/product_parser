@@ -7,11 +7,13 @@ services:
       context: ./
       dockerfile: ./devops/docker/DockerFile
     hostname: productparser_app
-    ports: 
+    ports:
     - 8080:80
     volumes:
       - .:/var/www/html
       - ./devops/apache/default.conf:/etc/apache2/sites-enabled/000-default.conf
+      - ./devops/xdebug/xdebug.ini:/usr/local/etc/php/conf.d/99-xdebug.ini
+      - ./devops/cron:/cron
     networks:
       - productparser_network
     depends_on:
