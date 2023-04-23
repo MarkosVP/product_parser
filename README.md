@@ -36,5 +36,8 @@ O projeto utiliza a estrutura de CRON do Linux para efetuar as chamadas automát
 make init-cron
 ```
 A CRON esta configurada para executar a cada 1 minuto, mas caso necessário, altere o arquivo `Makefile` do projeto (Função `config-cron`) e execute novamente o comando acima (Caso já tenha executado o init da cron, derrube o container e suba novamente, pois o comando só anexa a cron no arquivo, não substitui)
+Também é possível configurar trava no projeto para que somente efetue a atualização da base quando o horário informado for atingido, sendo possível manter a CRON executando a cada minuto, mas respondendo 'OK' sem efetuar a operação até que o horário seja detectado (Constante do .env do projeto ``)
+
+O projeto também teve sua memória máxima do PHP modificado para 256M visando evitar problemas de memória durante a execução do CRON, pois mesmo executando operações de limpeza, a memória em alguns casos estrapolava o limite
 
 >  This is a challenge by [Coodesh](https://coodesh.com/)

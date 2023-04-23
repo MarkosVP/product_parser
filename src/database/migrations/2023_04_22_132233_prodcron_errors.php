@@ -35,8 +35,8 @@ return new class extends Migration
             function (Blueprint $table) {
                 $table->bigInteger('cron_id')->comment('ID da CRON executada');
                 $table->bigInteger('registry_id')->comment('ID de controle dos erros por CRON');
-                $table->string('error')->comment('Informação do erro');
-                $table->integer('error_data')->nullable()->comment('Dados do registro que gerou erro');
+                $table->text('error')->comment('Informação do erro');
+                $table->text('error_data')->nullable()->comment('Dados do registro que gerou erro');
 
                 // Defino a PK da tabela
                 $table->primary(array('cron_id', 'registry_id'));
