@@ -25,7 +25,7 @@ up-in-background: ## Subo a imagem do projeto e disponibilizo para acesso, liber
 down: ## Derrubo todas as imagens de pé relacionadas ao projeto
 	docker compose down --remove-orphans
 
-build: ## Recrio as imagens do projeto
+build:  ## Preparo e subo o ambiente
 	docker compose up --build
 
 install: ## Instalo as dependências do projeto
@@ -42,10 +42,21 @@ access-app: ## Acesso o terminal do container do App
 access-db: ## Acesso o terminal do container do DB
 	docker exec -it $(DB_CONTAINER) bash
 
-prepare-environment: install up-in-background migrate-db ## Preparo e executo o projeto
+prepare-environment: install up-in-background fix-permissions migrate-db ## Preparo e executo o projeto
 
 migrate-db: ## Migra as tabelas necessárias para o banco de dados
 	docker compose run --rm -it $(APP_IMAGE) php artisan migrate
 
 migrate-reverse-db: ## Deleta as tabelas migradas pelo app no Banco
 	docker compose run --rm -it $(APP_IMAGE) php artisan migrate:reset
+
+config-cron: ## Configuro a cron no container
+	docker exec $(APP_CONTAINER) sh -c '(crontab -l 2>/dev/null; echo "*/1 * * * * /cron/cronStart.sh") | crontab -'
+
+start-cron: ## Inicializo o serviço da cron no container
+	docker exec $(APP_CONTAINER) service cron start
+
+init-cron: config-cron start-cron ## Configuro e subo a cron no container
+
+check-cron: ## Checa se o serviço da cron está de pé e funcional
+	docker exec $(APP_CONTAINER) sh -c 'ps -ef | grep cron | grep -v grep'
