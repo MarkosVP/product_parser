@@ -1,0 +1,308 @@
+{
+	"info": {
+		"_postman_id": "d0d3a177-d9a4-473c-b3be-118b3bc295e1",
+		"name": "Product Parser",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15520458"
+	},
+	"item": [
+		{
+			"name": "Projeto",
+			"item": [
+				{
+					"name": "Status do Projeto",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Status do PHP (Apenas modo dev)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/php",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"php"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Produtos",
+			"item": [
+				{
+					"name": "Busca Produtos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/products",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Busca Produto",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/products/17",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"products",
+								"17"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualiza Produto",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "status",
+									"value": "a",
+									"type": "text"
+								},
+								{
+									"key": "url",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "creator",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "created_t",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "product_name",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "quantity",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "brands",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "categories",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "labels",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "cities",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "purchase_places",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "stores",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "ingredients_text",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "traces",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "serving_size",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "serving_quantity",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "nutriscore_score",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "nutriscore_grade",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "main_category",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "image_url",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8080/api/products/17",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"products",
+								"17"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deleta Produto",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/products/17",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"products",
+								"17"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Crons",
+			"item": [
+				{
+					"name": "Cron de Produtos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/productCron",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"productCron"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Open Food Facts",
+			"item": [
+				{
+					"name": "Arquivos Open Food Facts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://challenges.coode.sh/food/data/json/index.txt",
+							"protocol": "https",
+							"host": [
+								"challenges",
+								"coode",
+								"sh"
+							],
+							"path": [
+								"food",
+								"data",
+								"json",
+								"index.txt"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

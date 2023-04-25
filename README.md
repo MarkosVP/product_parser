@@ -40,4 +40,6 @@ Também é possível configurar trava no projeto para que somente efetue a atual
 
 O projeto também teve sua memória máxima do PHP modificado para 256M visando evitar problemas de memória durante a execução do CRON, pois mesmo executando operações de limpeza, a memória em alguns casos estrapolava o limite
 
+Uma collection do Postman foi adicionada ao projeto dentro da pasta devops para facilitar os testes da API
+
 >  This is a challenge by [Coodesh](https://coodesh.com/)

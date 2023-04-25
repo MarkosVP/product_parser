@@ -11,8 +11,8 @@ use Illuminate\Http\JsonResponse;
 abstract class RequestUtils
 {
     /**
-     * Classe responsável por padronizar o retorno dos dados das requisições
-     * de Sucesso da aplicação
+     * Função responsável por retornar um JSON padronizado com o
+     * status de sucesso (status = 1) e status HTTP 200
      *
      * @param array|string $dados Os dados a serem retornados
      *
@@ -23,12 +23,37 @@ abstract class RequestUtils
         // Modelo o array dos dados
         $returnData = array(
             'status' => 1,
-            'data'   => $dados
+            'data'   => $dados,
+            'msg'    => null
         );
 
-        // Retorna um JSON com status HTTP 200 e status 1
+        // Retorna um JSON
         return response()->json(
             $returnData
+        );
+    }
+
+    /**
+     * Função responsável por retornar um JSON padronizado com o
+     * status de erro tratado (status = 0) e status HTTP 500
+     *
+     * @param string $mensagem A mensagem de erro
+     *
+     * @return JsonResponse JSON contendo o erro tratado
+     */
+    static function retornaErroTratado($mensagem)
+    {
+        // Modelo o array dos dados
+        $returnData = array(
+            'status' => 0,
+            'data'   => null,
+            'msg'    => $mensagem
+        );
+
+        // Retorna um JSON
+        return response()->json(
+            $returnData,
+            500
         );
     }
 }
