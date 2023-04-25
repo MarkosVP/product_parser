@@ -29,6 +29,9 @@ if (env('APP_ENV', 'prod') == 'dev') {
 // Modelo a rota da página principal
 Route::get('/home', [HomeController::class, 'home']);
 
+// Modelo a rota da Cron dos produtos
+Route::get('/productCron', [CronController::class, 'execute']);
+
 // Declaro a uri inicial das requisições dos produtos
 $prodUri = '/products';
 
@@ -37,12 +40,3 @@ Route::get($prodUri, [ProductController::class, 'index']);
 
 // Modelo a rota de consulta de um produto em específico
 Route::get($prodUri . '/{code}', [ProductController::class, 'show']);
-
-// Modelo a rota de Atualização de um produto
-Route::put($prodUri . '/{code', [ProductController::class, 'update']);
-
-// Modelo a rota de Remoção de um produto
-Route::delete($prodUri . '/{code', [ProductController::class, 'destroy']);
-
-// Modelo a rota da Cron dos produtos
-Route::get('/productCron', [CronController::class, 'execute']);

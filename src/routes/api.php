@@ -1,7 +1,8 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,3 +15,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Declaro a uri inicial das requisições dos produtos
+$prodUri = '/products';
+
+// Modelo a rota de Atualização de um produto
+Route::put($prodUri . '/{code}', [ProductController::class, 'update']);
+
+// Modelo a rota de Remoção de um produto
+Route::delete($prodUri . '/{code}', [ProductController::class, 'destroy']);
